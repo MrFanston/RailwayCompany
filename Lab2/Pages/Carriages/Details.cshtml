@@ -1,0 +1,49 @@
+﻿@page
+@model Lab2.Pages.Carriages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Carriage</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.Train)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.Train.Destination)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.CarriageNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.CarriageNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.SeatCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.SeatCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.AvailableSeats)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.AvailableSeats)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Carriage.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

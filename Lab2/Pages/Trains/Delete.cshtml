@@ -1,0 +1,64 @@
+﻿@page
+@model Lab2.Pages.Trains.DeleteModel
+
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы действительно хотите удалить этот поезд?</h3>
+<div>
+    <h4>Поезд</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.TrainNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.TrainNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.Destination)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.Destination)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.DepartureTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.DepartureTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.TravelTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.TravelTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.ArrivalTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.ArrivalTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.TicketsAvailable)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.TicketsAvailable)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Train.CarriageCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Train.CarriageCount)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Train.Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-page="./Index">Вернуться обратно</a>
+    </form>
+</div>

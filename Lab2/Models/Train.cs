@@ -5,11 +5,14 @@ namespace Lab2.Models
 {
     public class Train
     {
-        public int Id { get; set; } // Primary Key
+        public List<Carriage> Carriages { get; set; } = new List<Carriage>();
+
+        [Key]
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Номер поезда")]
-        public string TrainNumber { get; set; }
+        public string TrainNumber => $"П-{Id:D3}";
 
         [Required]
         [Display(Name = "Станция назначения")]
@@ -19,13 +22,13 @@ namespace Lab2.Models
         public DateTime DepartureTime { get; set; }
 
         [Display(Name = "Время в пути (часы)")]
-        public double TravelTimeHours { get; set; }
+        public TimeSpan TravelTime => ArrivalTime - DepartureTime;
 
         [Display(Name = "Время прибытия")]
         public DateTime ArrivalTime { get; set; }
 
         [Display(Name = "Наличие билетов")]
-        public bool TicketsAvailable { get; set; }
+        public int TicketsAvailable { get; set; }
 
         [Display(Name = "Количество вагонов")]
         public int CarriageCount { get; set; }

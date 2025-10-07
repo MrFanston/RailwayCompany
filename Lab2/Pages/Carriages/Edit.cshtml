@@ -1,0 +1,56 @@
+﻿@page
+@model Lab2.Pages.Carriages.EditModel
+
+@{
+    ViewData["Title"] = "Редактировать";
+}
+
+<h1>Редактировать</h1>
+
+<h4>Поезд</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Carriage.Id" />
+            <div class="form-group">
+                <label asp-for="Carriage.TrainId" class="control-label"></label>
+                <select asp-for="Carriage.TrainId" class="form-control" asp-items="ViewBag.TrainId"></select>
+                <span asp-validation-for="Carriage.TrainId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carriage.CarriageNumber" class="control-label"></label>
+                <input asp-for="Carriage.CarriageNumber" class="form-control" />
+                <span asp-validation-for="Carriage.CarriageNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carriage.Type" class="control-label"></label>
+                <input asp-for="Carriage.Type" class="form-control" />
+                <span asp-validation-for="Carriage.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carriage.SeatCount" class="control-label"></label>
+                <input asp-for="Carriage.SeatCount" class="form-control" />
+                <span asp-validation-for="Carriage.SeatCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carriage.AvailableSeats" class="control-label"></label>
+                <input asp-for="Carriage.AvailableSeats" class="form-control" />
+                <span asp-validation-for="Carriage.AvailableSeats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Вернуться обратно</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

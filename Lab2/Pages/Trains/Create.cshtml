@@ -1,0 +1,49 @@
+﻿@page
+@model Lab2.Pages.Trains.CreateModel
+
+@{
+    ViewData["Title"] = "Создание нового поезда";
+}
+
+<h1>Создание</h1>
+
+<h4>Поезд</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Train.Destination" class="control-label"></label>
+                <input asp-for="Train.Destination" class="form-control" />
+                <span asp-validation-for="Train.Destination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Train.DepartureTime" class="control-label"></label>
+                <input asp-for="Train.DepartureTime" class="form-control" />
+                <span asp-validation-for="Train.DepartureTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Train.ArrivalTime" class="control-label"></label>
+                <input asp-for="Train.ArrivalTime" class="form-control" />
+                <span asp-validation-for="Train.ArrivalTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Train.CarriageCount" class="control-label"></label>
+                <input asp-for="Train.CarriageCount" class="form-control" />
+                <span asp-validation-for="Train.CarriageCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Вернуться обратно</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,53 @@
+﻿@page
+@model Lab2.Pages.Trains.IndexModel
+@{
+    ViewData["Title"] = "Поезда";
+}
+
+<h1 class="mb-4">Список поездов</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success mb-3">Добавить поезд</a>
+</p>
+
+<table class="table table-striped table-bordered align-middle shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th>Номер поезда</th>
+            <th>Станция назначения</th>
+            <th>Время отправления</th>
+            <th>Время прибытия</th>
+            <th>Время в пути</th>
+            <th>Билеты</th>
+            <th>Вагонов</th>
+            <th class="text-center">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Trains != null && Model.Trains.Any())
+        {
+            @foreach (var train in Model.Trains)
+            {
+                <tr>
+                    <td>@train.TrainNumber</td>
+                    <td>@train.Destination</td>
+                    <td>@train.DepartureTime.ToString("HH:mm")</td>
+                    <td>@train.ArrivalTime.ToString("HH:mm")</td>
+                    <td>@train.TravelTime</td>
+                    <td>@train.TicketsAvailable</td>
+                    <td>@train.CarriageCount</td>
+                    <td class="text-center">
+                        <a asp-page="./Edit" asp-route-id="@train.Id" class="btn btn-sm btn-primary">✏️</a>
+                        <a asp-page="./Delete" asp-route-id="@train.Id" class="btn btn-sm btn-danger">🗑️</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center text-muted">Нет данных о поездах</td>
+            </tr>
+        }
+    </tbody>
+</table>

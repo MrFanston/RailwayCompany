@@ -1,0 +1,52 @@
+﻿@page
+@model Lab2.Pages.Carriages.DeleteModel
+
+@{
+    ViewData["Title"] = "Удалить";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы действительно хотите удалить этот вагон?</h3>
+<div>
+    <h4>Вагон</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.Train.TrainNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.Train.TrainNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.CarriageNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.CarriageNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.SeatCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.SeatCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carriage.AvailableSeats)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carriage.AvailableSeats)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Carriage.Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-page="./Index">Вернуться обратно</a>
+    </form>
+</div>

@@ -1,0 +1,74 @@
+﻿@page
+@model Lab2.Pages.Reports.CarriageReportModel
+@{
+    ViewData["Title"] = "Отчёт по вагонам";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="get" class="form-inline mb-3 d-flex flex-wrap gap-2">
+    <!-- Выбор поезда -->
+    <select asp-for="TrainId" class="form-control" style="width: 180px;"
+            asp-items="@(new SelectList(Model.Trains, "Id", "TrainNumber"))">
+        <option value="">Все поезда</option>
+    </select>
+
+    <!-- Тип вагона -->
+    <select asp-for="Type" class="form-control" style="width: 150px;">
+        <option value="">Все типы</option>
+        <option value="Купе">Купе</option>
+        <option value="Плацкарт">Плацкарт</option>
+        <option value="Сидячий">Сидячий</option>
+    </select>
+
+    <!-- Только с доступными местами -->
+    <div class="form-check" style="margin-top: 5px;">
+        <input asp-for="OnlyWithAvailableSeats" class="form-check-input" />
+        <label asp-for="OnlyWithAvailableSeats" class="form-check-label">Только с доступными местами</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Фильтровать</button>
+</form>
+
+@if (Model.Carriages.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Номер поезда</th>
+                <th>Номер вагона</th>
+                <th>Тип</th>
+                <th>Мест всего</th>
+                <th>Свободно</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model.Carriages)
+        {
+            <tr>
+                <td>@c.Train.TrainNumber</td>
+                <td>@c.CarriageNumber</td>
+                <td>@c.Type</td>
+                <td>@c.SeatCount</td>
+                <td>@c.AvailableSeats</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    @if (HttpContext.Request.Query.ContainsKey("TrainId") ||
+         HttpContext.Request.Query.ContainsKey("Type") ||
+         HttpContext.Request.Query.ContainsKey("OnlyWithAvailableSeats"))
+    {
+        <div class="alert alert-info mt-3">
+            <strong>Итого:</strong><br />
+            Всего вагонов: <strong>@Model.Carriages.Count</strong><br />
+            Общее количество мест: <strong>@Model.TotalSeats</strong><br />
+            Свободных мест: <strong>@Model.AvailableSeats</strong>
+        </div>
+    }
+}
+else
+{
+    <p>Вагоны не найдены.</p>
+}

@@ -1,0 +1,68 @@
+﻿@page
+@model Lab2.Pages.Reports.TrainReportModel
+@{
+    ViewData["Title"] = "Отчёт по списку поездов";
+}
+
+<h2>Отчёт по списку поездов</h2>
+
+<form method="get" class="d-flex flex-wrap align-items-center mb-3" style="gap: 10px;">
+    <input type="text" name="Station" placeholder="Станция" value="@Model.Station" class="form-control" style="width: 180px;" />
+    <input type="date" name="FromDate" value="@(Model.FromDate?.ToString("yyyy-MM-dd"))" class="form-control" style="width: 150px;" />
+    <input type="date" name="ToDate" value="@(Model.ToDate?.ToString("yyyy-MM-dd"))" class="form-control" style="width: 150px;" />
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="OnlyWithAvailableSeats" value="true" @(Model.OnlyWithAvailableSeats ? "checked" : "") />
+        <label class="form-check-label">Только с доступными местами</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сформировать отчёт</button>
+</form>
+
+
+@if (Model.Trains.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Номер поезда</th>
+                <th>Станция назначения</th>
+                <th>Время отправления</th>
+                <th>Время прибытия</th>
+                <th>Время в пути</th>
+                <th>Билетов доступно</th>
+                <th>Вагонов</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var train in Model.Trains)
+            {
+                <tr>
+                    <td>@train.TrainNumber</td>
+                    <td>@train.Destination</td>
+                    <td>@train.DepartureTime.ToString("g")</td>
+                    <td>@train.ArrivalTime.ToString("g")</td>
+                    <td>@string.Format("{0:%h} ч {0:%m} мин", train.TravelTime)</td>
+                    <td>@train.TicketsAvailable</td>
+                    <td>@train.CarriageCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (HttpContext.Request.Query.ContainsKey("Station") ||
+         HttpContext.Request.Query.ContainsKey("FromDate") ||
+         HttpContext.Request.Query.ContainsKey("ToDate") ||
+         HttpContext.Request.Query.ContainsKey("OnlyWithAvailableSeats"))
+    {
+        <div class="alert alert-info mt-3">
+            <strong>Итого:</strong><br />
+            Количество поездов: <strong>@Model.TotalTrains</strong><br />
+            Доступных мест: <strong>@Model.TotalTickets</strong><br />
+        </div>
+    }
+}
+else
+{
+    <p>По выбранным параметрам поездов не найдено.</p>
+}

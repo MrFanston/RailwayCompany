@@ -1,10 +1,30 @@
 ﻿@page
-@model IndexModel
+@model Lab2.Pages.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Добро пожаловать в RailwayStationApp!</h1>
+        <p class="lead">
+            Это веб-приложение для управления железнодорожной станцией: 
+            вы можете просматривать и редактировать информацию о поездах, вагонах, а также формировать отчёты.
+        </p>
+        <hr class="my-4">
+        <p>Основные возможности:</p>
+        <ul>
+            <li>Просмотр, добавление, редактирование и удаление поездов.</li>
+            <li>Управление вагонами: тип, количество мест, наличие кондиционера и Wi-Fi.</li>
+            <li>Формирование отчётов по билетам и по направлениям.</li>
+        </ul>
+        <p>
+            Используйте навигационное меню для перехода к нужному разделу.
+        </p>
+        <td class="text-center">
+            <a class="btn btn-primary btn-lg" asp-page="/Trains/Index" role="button">Перейти к поездам</a>
+            <a class="btn btn-primary btn-lg" asp-page="/Carriages/Index" role="button">Перейти к вагонам</a>
+        </td>
+    </div>
 </div>
